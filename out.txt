@@ -1,0 +1,25 @@
+Welcome to Git (version 1.8.3-preview20130601)
+
+
+Run 'git help git' to display the help index.
+Run 'git help <command>' to display help for specific commands.
+m = 1	p = 1	space = 2
+m = 1	p = 3	space = 0
+m = 1	p = 4	space = 0
+m = 1	p = 6	space = 0
+m = 1	p = 9	space = 0
+m = 5	p = 1	space = 10
+m = 5	p = 3	space = 10.5152
+m = 5	p = 4	space = 10.5815
+m = 5	p = 6	space = 10.6481
+m = 5	p = 9	space = 10.6928
+m = 10	p = 1	space = 20
+m = 10	p = 3	space = 21.3575
+m = 10	p = 4	space = 21.5335
+m = 10	p = 6	space = 21.711
+m = 10	p = 9	space = 21.8302
+m = 20	p = 1	space = 40
+m = 20	p = 3	space = 38.2188
+m = 20	p = 4	space = 38.0018
+m = 20	p = 6	space = 37.786
+m = 20	p = 9	space = 37.6428
