@@ -1,8 +1,10 @@
 #include "munro_peterson.h"
 #include <iostream>
+#include <ctime>
 
-const int N_MAX = 100;
-
+const int N_MAX = 1200;
+const int rank  = 1100;
+const int p		= 400;
 
 int main(){
 	// int p[] = {2, 3, 4, 6, 9};
@@ -18,15 +20,22 @@ int main(){
 
 	int a[N_MAX];
 	int n = N_MAX;
+	int my_res, std_res;
+	srand (time(nullptr));
 	forn(i,n){
-		a[i] = rand() % 32000;
+		a[i] = rand() % INT_MAX;
 //		std::cout << a[i] << std::endl;
 	}
 	std::cout << "-------------" << std::endl;
-	munro_peterson(a, n, 2, 50);
+	my_res = munro_peterson(a, n, p, rank);
+	std::cout << my_res << std::endl;
+	std::cout << "-------------" << std::endl;
+	std::cout << "-------------" << std::endl;
 	std::sort(a,a+n);
 //	forn(i,n)
 //		std::cout << a[i] << std::endl;
-	std::cout << a[49] << std::endl;
+	std_res = a[rank];
+	std::cout << std_res << std::endl;
+	assert(my_res == std_res);
 	return 0;
 }
