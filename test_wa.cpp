@@ -1,41 +1,44 @@
 #include "munro_peterson.h"
 #include <iostream>
 #include <ctime>
+#include <chrono>
+#include <random>
 
-const int N_MAX = 1200;
-const int rank  = 1100;
-const int p		= 400;
+const int MAX_SIZE = 10000;
+int a[MAX_SIZE];
+int b[MAX_SIZE];
 
 int main(){
-	// int p[] = {2, 3, 4, 6, 9};
-	// int m[] = {10, 20, 100, 1000, 100000};
-	// int pn = 5;
-	// int mn = 5;
-	// forn(i,mn){
-	// 	forn(j,pn){
-	// 		munro_peterson(&pn, m[i], p[j]);
-	// 	}
-	// 	std::cout << DBL_MIN << DBL_MAX << std::endl;
-	// }
+	int n[] = {1, 3, 10, MAX_SIZE}; //запуск на различных объемах данных
+	int nn = 4;
+	int p[] = {1, 2, 4, 6, 20};		//запуск c различным числом проходов
+	int pn = 5;
+	
+	unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
+	std::default_random_engine generator (seed);
+	std::uniform_int_distribution<int> distribution(0,INT_MAX-1);
 
-	int a[N_MAX];
-	int n = N_MAX;
-	int my_res, std_res;
-	srand (time(nullptr));
-	forn(i,n){
-		a[i] = rand() % INT_MAX;
-//		std::cout << a[i] << std::endl;
+	forn(q,100){
+		forn(i,nn){
+			forn(j,n[i]){
+				a[j] = distribution(generator);
+				b[j] = a[j];
+			}
+			std::sort(b,b+n[i]);		
+			int ass = 12;
+			forn(k,pn){
+				int rank = 0;					//запуск c различным числом проходов
+				assert(b[rank] == munro_peterson(a, n[i], p[k], rank));
+			
+				rank = rand() % n[i];
+				assert(b[rank] == munro_peterson(a, n[i], p[k], rank));
+			
+				rank = n[i] - 1;
+				assert(b[rank] == munro_peterson(a, n[i], p[k], rank));
+			}		
+		}
 	}
-	std::cout << "-------------" << std::endl;
-	my_res = munro_peterson(a, n, p, rank);
-	std::cout << my_res << std::endl;
-	std::cout << "-------------" << std::endl;
-	std::cout << "-------------" << std::endl;
-	std::sort(a,a+n);
-//	forn(i,n)
-//		std::cout << a[i] << std::endl;
-	std_res = a[rank];
-	std::cout << std_res << std::endl;
-	assert(my_res == std_res);
+	std::cout << "Test WA: OK" << std::endl;
+
 	return 0;
 }
