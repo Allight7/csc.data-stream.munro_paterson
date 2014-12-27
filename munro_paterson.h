@@ -58,6 +58,10 @@ inline int munro_paterson(int* a, int an, int p, int rank){
 		int m_taken = pow(2,t)*s;												//разм. расшир. послед.
 		int t_2 = pow(2,t);
 		int rank_offset = 0;
+		if(i == 0){
+			int real_space = (t+1)*s;
+			std::cout << "p = " << p << ";\treal_space = " << real_space;
+		}
 		std::vector<int> v_curr(s);												//текущий сэмпл
 		std::vector<bool> b_per_level(t+1, false);								//наличие сохраненных сэмплов для конкр. уровня.
 		std::vector<std::vector<int>> v_per_level(t+1);							//контейнер с сэмплами разных уровней, ожидающих слияния
@@ -108,6 +112,8 @@ inline int munro_paterson(int* a, int an, int p, int rank){
 																				/*================================================*/
 																							/*	Последний проход	*/
 	assert(first_predicted_space >= m);												//проверка ограничения используемой памяти
+	std::cout << "\t\tm = " << m << "\t\tpred_space = " << static_cast<int>(first_predicted_space) << std::endl;
+
 
 	int rank_offset = 0;
 	std::vector<int> res;
